@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:m="http://code.google.com/p/gmaps4jsf/"
+        
+    xmlns:p="http://primefaces.org/ui">
+     
+    
+    
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Ted</title>
+
+<!-- SET: FAVICON -->
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+<!-- END: FAVICON -->
+
+<!-- SET: STYLESHEET -->
+<link rel="stylesheet" href="style/main.css" type="text/css" media="all" />
+<!-- END: STYLESHEET -->
+
+<!-- SET: SCRIPTS -->
+<!--<script type="text/javascript"></script> -->
+<!-- END: SCRIPTS -->
+<!--[if lt IE 7]>
+<style type="text/css">
+.lorem p{ line-height:18px; }
+</style>
+<![endif]-->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true">
+        </script> 
+<script type="text/javascript">
+	//<![CDATA[
+	function changeImg(who,flag) {
+	  if (flag) {
+	    who.style.height='40px';  
+            who.style.width='40px';
+	  } else {
+	    who.style.height='20px';  
+            who.style.width='20px';
+	  }
+	}
+	//]]>
+	</script>
+        
+          <script type="text/javascript">
+                function handleLoginRequest(xhr, status, args)
+                {
+                    if(args.validationFailed || !args.loggedIn)
+                    {
+                        PF('dlg').jq.effect("shake", {times:5}, 100);
+                        
+                    }
+                    else
+                    {
+                        PF('dlg').hide();
+                        $('#loginLink').fadeOut();
+                      // var ima = '<h:outputText value="#{login.username}"/>';
+                       //if(ima === 'opa')
+                        //   window.location.href ="https://localhost:8443/ted/House.xhtml";
+                        //else if(ima === '')
+                         //  window.location.href ="https://localhost:8443/ted/choose_admin.xhtml"; 
+                        //else
+                        //window.location.href = "https://localhost:8443/ted/choose_admin.xhtml";
+                      
+                    }
+                }
+            </script>
+
+
+
+</h:head>
+
+    <h:body  >
+
+<!-- wrapper starts -->
+<div class="wrapper"> 
+  
+  <!-- container starts -->
+  <div class="container"> 
+    
+    <!-- Header Starts -->
+    <div class="header">
+      <div class="logo">
+        <h1><a href="index.xhtml">Ted</a><span>Find your dream home here!</span></h1>
+      </div>
+      <div class="header_nav" >
+          <ul>
+              <li><h:outputLink  ><img width="20" height="20" src="images/home.png" onmouseover="changeImg(this,true);" onmouseout="changeImg(this,false);"  />Home</h:outputLink></li>
+              <li><h:outputLink  value="javascript:void(0)" onclick="PF('dlg').show();" title="login"><img width="20" height="20" src="images/login.png" onmouseover="changeImg(this,true)" onmouseout="changeImg(this,false)"  />Login</h:outputLink></li>
+          <li><a href="register.xhtml"><img width="20" height="20" src="images/register.png" onmouseover="changeImg(this,true)" onmouseout="changeImg(this,false)"  />Register</a></li>
+          <li><a href="aboutus.xhtml"><img width="20" height="20" src="images/aboutus.jpg" onmouseover="changeImg(this,true)" onmouseout="changeImg(this,false)"  />AboutUs</a></li>
+         
+        </ul>
+          
+        <div class="clear"></div>
+       
+    
+    
+    
+
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="banner"><img src="images/banar.png" width="980" height="332" alt="banar" /></div>
+    <!-- Header ends --> 
+    
+    <!-- maincontent Starts -->
+    <div class="main_content">
+      <div class="left_cont">
+        <div class="content1">
+            <p> After years of experimenting and researching we have managed to find a way to 
+             help users(renters and buyers) make the best choice for them.
+             to use our services you have to register to our website and then log in.</p>
+             <p>Of course if you want to sell/rent your house you can create a profile as a seller or lessor
+                 to attract offers for your house. </p>
+            
+                
+                
+                <h3>Houses for selling</h3>
+                <p:imageSwitch effect="shuffle">
+                    <ui:repeat value="#{login.phot}" var="image">
+                        <p:graphicImage value="/#{image}" width="600" height="269" />
+                    </ui:repeat>
+                </p:imageSwitch>
+                
+                <h:form id="forma">
+                
+                
+                
+                
+       
+                <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+                <p:dialog header="Login" widgetVar="dlg" resizable="false">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputLabel for="username" value="Username:" />
+                        <p:inputText id="username" value="#{login.username}" required="true" label="username" />
+                        <h:outputLabel for="password" value="Password:" />
+                        <p:password id="password" value="#{login.password}" required="true" label="password" />
+                        
+                        <f:facet name="footer">
+                            <h:commandButton value="Login"   action="#{login.givePage()}" actionListener="#{login.user_login()}"   />
+                        </f:facet>
+                    </h:panelGrid>
+                </p:dialog>
+            </h:form>
+  
+        </div>
+        <div class="content2">
+        
+        </div>
+      </div>
+      <div class="right_cont">
+          <h1>Houses sold so far...</h1>
+          <p:gmap   fitBounds="true"   center="31.381542, 2.222893"  zoom="0" streetView="true" type="roadmap" 
+                  style="width:280px;height:280px" model="#{login.simpleModel}" />
+      </div>
+      <div class="clear"></div>
+      
+      <!-- aincontent ends --> 
+      
+      <!-- footer starts -->
+      <div class="footer">
+        <div class="copy"> Copyright Â© 2014 Ted. All rights reserved. Design by <a href="#" target="_blank" rel="nofollow">Agapiou Stylianos,Daskalakis christos</a></div>
+        <div class="social_icons flt_rt">
+          <ul>
+            <li><a href="#"><img src="images/fb_icon.png" width="24" height="24" alt="img" /> </a></li>
+            <li><a href="#"> <img src="images/twiter_icon.png" width="24" height="24" alt="img" /></a></li>
+            <li><a href="#"><img src="images/google_icon.png" width="26" height="26" alt="img" /></a></li>
+          </ul>
+          <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <!-- footer ends --> 
+    </div>
+  </div>
+  <!-- container ends --> 
+  
+</div>
+<!-- wrapper ends -->
+
+</h:body>
+</html>
+

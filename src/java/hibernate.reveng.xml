@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
+<hibernate-reverse-engineering>
+  <schema-selection match-catalog="mydb"/>
+  <table-filter match-name="messages"/>
+  <table-filter match-name="houses"/>
+  <table-filter match-name="role"/>
+  <table-filter match-name="photos"/>
+  <table-filter match-name="sell_rent"/>
+  <table-filter match-name="user"/>
+</hibernate-reverse-engineering>

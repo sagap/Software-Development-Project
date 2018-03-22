@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+        
+    xmlns:p="http://primefaces.org/ui">
+     
+    
+    
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Ted</title>
+
+<!-- SET: FAVICON -->
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+<!-- END: FAVICON -->
+
+<!-- SET: STYLESHEET -->
+<link rel="stylesheet" href="style/main.css" type="text/css" media="all" />
+<!-- END: STYLESHEET -->
+
+<!-- SET: SCRIPTS -->
+<!--<script type="text/javascript"></script> -->
+<!-- END: SCRIPTS -->
+<!--[if lt IE 7]>
+<style type="text/css">
+.lorem p{ line-height:18px; }
+</style>
+<![endif]-->
+</h:head>
+    
+<h:body>
+
+<!-- wrapper starts -->
+<div class="wrapper"> 
+  
+  <!-- container starts -->
+  <div class="container"> 
+    
+    <!-- Header Starts -->
+    <div class="header">
+      <div class="logo">
+        <h1><a href="#">Ted</a><span>Find your dream home here!</span></h1>
+      </div>
+      <div class="header_nav">
+        <ul>
+              <li><a href="index.xhtml"><img width="20" height="20" src="images/home.png" onmouseover="changeImg(this,true);" onmouseout="changeImg(this,false);"  />Home</a></li>
+              <li><h:outputLink  value="javascript:void(0)" onclick="PF('dlg').show();" title="login"><img width="20" height="20" src="images/login.png" onmouseover="changeImg(this,true)" onmouseout="changeImg(this,false)"  />Login</h:outputLink></li>
+          <li><a href="register.xhtml"><img width="20" height="20" src="images/register.png" onmouseover="changeImg(this,true)" onmouseout="changeImg(this,false)"  />Register</a></li>
+          <li><a href="aboutus.xhtml"><img width="20" height="20" src="images/aboutus.jpg" onmouseover="changeImg(this,true)" onmouseout="changeImg(this,false)"  />AboutUs</a></li>
+         
+        </ul>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="banner"><img src="images/banar.png" width="980" height="332" alt="banar" /></div>
+    <!-- Header ends --> 
+    
+    <!-- maincontent Starts -->
+    <div class="main_content">
+      <div class="left_cont">
+        <div class="content1">
+          <h2>Welcome to our company</h2>
+            <h4>Register in order to use our full services!</h4>
+        
+           
+          <h:form>
+ <p:messages id="messages" showDetail="true" autoUpdate="true" />             
+ <h:panelGrid columns="2" id="matchGrid" cellpadding="4">              
+              
+  <h:outputLabel value="Username :"/>
+  <p:inputText id="username" value="#{register.username}"
+                required="true" requiredMessage="Please Enter Username!"/>
+            
+              
+           
+                     
+        <h:outputLabel for="pwd1" value="Password 1: *" />
+        <p:password id="pwd1" value="#{register.password}" match="pwd2" label="Password 1" required="true" feedback="true" />
+ 
+        <h:outputLabel for="pwd2" value="Password 2: *" />
+        <p:password id="pwd2" value="#{register.password2}" label="Password 2" required="true" />
+    
+            
+            
+            
+ 
+             <h:outputText value="Give Number :"></h:outputText>
+            <p:inputText id="number"
+                value="#{register.number}"  required="true"
+                requiredMessage="Please enter your number"/>
+               
+            
+             
+ 
+ <h:outputText value="First name :"></h:outputText>
+<p:inputText id="firstname" value="#{register.name}"
+                required="true" requiredMessage="Please Enter First Name!"/>
+            
+            
+            
+ 
+ <h:outputText value="Last name :"></h:outputText>
+ <p:inputText id="lastname" value="#{register.surname}"
+                required="true" requiredMessage="Please Enter Last Name!"/>
+            
+            
+            
+
+ 
+            <h:outputText value="Email :"></h:outputText>
+            <p:inputText id="email" value="#{register.email}" required="true"
+                requiredMessage="Please Enter Email!">
+            <f:validator validatorId="Source Packages.Validator.EmailValidator" />
+            </p:inputText>
+            
+ 
+            <h:outputText value="Confirm Email :"></h:outputText>
+            <p:inputText id="confirmemail" value="#{register.confirmemail}"
+                required="true" requiredMessage="Please Confirm Email!">
+            </p:inputText>
+            
+            
+ 
+            <h:outputText value="User Roles :"></h:outputText>
+            <h:selectManyCheckbox id="groups" value="#{register.selectedGroups}"
+                required="true" requiredMessage="Select at least one user Role">
+                <f:selectItem itemLabel="Lessor(Εκμισθωτής)" itemValue="Lessor"></f:selectItem>
+                <f:selectItem itemLabel="Seller(Πωλητής)" itemValue="Seller"></f:selectItem>
+                <f:selectItem itemLabel="Renter(Ενοικιαστής)" itemValue="Renter"></f:selectItem>
+                <f:selectItem itemLabel="Buyer(Αγοραστής)" itemValue="Buyer"></f:selectItem>
+            </h:selectManyCheckbox>
+ 
+            
+             <p:commandButton type="submit" value="Submit"
+                              action="#{register.givePage()}" actionListener="#{register.registerUser()}"></p:commandButton>
+            <p:commandButton type="reset" value="Reset"></p:commandButton>
+        </h:panelGrid>
+    </h:form>
+
+        </div> 
+      </div>
+      <div class="right_cont">
+       
+      </div>
+      <div class="clear"></div>
+      
+      <!-- aincontent ends --> 
+      
+      <!-- footer starts -->
+      <div class="footer">
+        <div class="copy"> Copyright Â© 2014 Ted. All rights reserved. Design by <a href="#" target="_blank" rel="nofollow">Agapiou Stylianos,Daskalakis christos</a></div>
+        <div class="social_icons flt_rt">
+          <ul>
+            <li><a href="#"><img src="images/fb_icon.png" width="24" height="24" alt="img" /> </a></li>
+            <li><a href="#"> <img src="images/twiter_icon.png" width="24" height="24" alt="img" /></a></li>
+            <li><a href="#"><img src="images/google_icon.png" width="26" height="26" alt="img" /></a></li>
+          </ul>
+          <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <!-- footer ends --> 
+    </div>
+  </div>
+  <!-- container ends --> 
+
+</div>
+<!-- wrapper ends -->
+
+</h:body>
+       
+</html>

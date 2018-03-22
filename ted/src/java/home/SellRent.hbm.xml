@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 3, 2014 1:26:12 PM by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="home.SellRent" table="sell_rent" catalog="mydb">
+        <composite-id name="id" class="home.SellRentId">
+            <key-property name="type" type="string">
+                <column name="type" length="20" />
+            </key-property>
+            <key-property name="housesOdos" type="string">
+                <column name="houses_odos" length="200" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="houses" class="home.Houses" update="false" insert="false" fetch="select">
+            <column name="houses_odos" length="200" not-null="true" />
+        </many-to-one>
+        <property name="payment" type="double">
+            <column name="payment" precision="22" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

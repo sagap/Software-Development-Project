@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+    
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:m="http://code.google.com/p/gmaps4jsf/"
+        
+    xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+        
+    xmlns:p="http://primefaces.org/ui">
+     
+    
+    
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Ted</title>
+
+<!-- SET: FAVICON -->
+<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />
+<!-- END: FAVICON -->
+
+<!-- SET: STYLESHEET -->
+<link rel="stylesheet" href="style/main.css" type="text/css" media="all" />
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true">
+        </script> 
+
+
+
+
+
+
+
+</h:head>
+    
+<h:body >
+       
+<!-- wrapper starts -->
+<div class="wrapper"> 
+  
+  <!-- container starts -->
+  <div class="container"> 
+    
+    <!-- Header Starts -->
+    <div class="header">
+      <div class="logo">
+        <h1><a href="#">Ted</a><span>Find your dream home here!</span></h1>
+      </div>
+      <div class="header_nav">
+        <ul>
+             <li><h:outputLink  value="/secured/role.xhtml" ><img width="20" height="20" src="images/home.png" onmouseover="changeImg(this,true);" onmouseout="changeImg(this,false);"  />Home</h:outputLink></li>
+             <li><h:form><h:commandLink  action="#{login.userLogout()}"  title="logout"><img width="20" height="20" src="images/login.png" onmouseover="changeImg(this,true)" onmouseout="changeImg(this,false)"  />Logout</h:commandLink></h:form></li>
+          <li><a href="../register.xhtml"><img width="20" height="20" src="images/register.png" onmouseover="changeImg(this,true)" onmouseout="changeImg(this,false)"  />Register</a></li>
+          <li><a href="../aboutus.xhtml"><img width="20" height="20" src="images/aboutus.jpg" onmouseover="changeImg(this,true)" onmouseout="changeImg(this,false)"  />AboutUs</a></li>
+         </ul>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+    </div>
+    <div class="banner"><p:galleria value="#{house.phot}" var="image" panelWidth="600" panelHeight="269" showCaption="true">
+            <p:graphicImage value="/#{image}"  title="wonderfull" width="600" height="269"/>
+</p:galleria></div>
+    <!-- maincontent Starts -->
+    <div class="main_content">
+      <div class="left_cont">
+         
+    
+       <h:form>
+                  <p:tabView orientation="left">
+        <p:tab title="Information: ">
+            <h:panelGrid columns="2" cellpadding="10">
+              <h:outputText id="outtxt" value="Square meters: #{house.tetragwnika} "/><br/>
+
+              <h:outputText id="outtext" value="Year built: #{house.xronosKataskevis}"/><br/>
+
+              <h:outputText id="outtoixt" value="Year of renovation: #{house.anakainhsh}"/><br/>
+                    
+              <h:outputText value ="Central Heating "/><p:selectBooleanButton offLabel="No" onLabel="Yes"  disabled="true"  value="#{house.kentriki}" /> 
+              <h:outputText value ="Autonomous Heating"/><p:selectBooleanButton offLabel="No" onLabel="Yes"  disabled="true"  value="#{house.aytonomh}" /> 
+              <h:outputText value ="Single House"/><p:selectBooleanButton offLabel="No" onLabel="Yes"  disabled="true" value="#{house.monokatoikia}" />  
+              <p:editor id="editor12" widgetVar="editorWidget" value="#{house.sxolia}" disabled="true"  width="283" /><br/>
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Cost:">
+            <h:panelGrid columns="2" cellpadding="10">
+              <h:outputLabel id="oasfdxt" value="Sale : "></h:outputLabel>
+              <p:selectBooleanButton offLabel="No" onLabel="Yes"   disabled="true"  value="#{house.alf}" />   <h:outputText value="#{house.p1}"/> <br/>            
+                  
+              <h:outputLabel id="oudsft" value="Rent : "></h:outputLabel>
+              <p:selectBooleanButton offLabel="No" onLabel="Yes"  disabled="true"  value="#{house.alfa}" />   <h:outputText value="#{house.p2}"/><br/>
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Leave a Message here: ">
+            <h:panelGrid columns="2"  cellpadding="30">
+                <h:inputTextarea rows="10" cols="50" value="#{house.message}"/><br/>               
+                <p:commandButton value="Submit" action="#{house.StoreMessage(login.username)}"/>
+                
+            </h:panelGrid>
+        </p:tab>
+    </p:tabView>
+                
+            </h:form>
+    
+ 
+      
+      </div>
+   
+<div class="right_cont">
+
+<div class="lorem lorem1">
+<table>
+<h:form>  
+            <m:map width="250px"  height="400px" address="#{house.odos}">
+                 <m:marker />
+                 <m:htmlInformationWindow htmlText="#{house.odos}"/>
+            </m:map>
+
+              <br/><br/><br/>
+       
+              
+                     
+            </h:form>
+                </table>
+        </div>
+      </div>
+      <div class="clear"></div>
+      
+      <!-- aincontent ends --> 
+      
+      <!-- footer starts -->
+      <div class="footer">
+        <div class="copy"> Copyright Â© 2014 Ted. All rights reserved. Design by <a href="#" target="_blank" rel="nofollow">Agapiou Stylianos,Daskalakis christos</a></div>
+        <div class="social_icons flt_rt">
+          <ul>
+            <li><a href="#"><img src="images/fb_icon.png" width="24" height="24" alt="img" /> </a></li>
+            <li><a href="#"> <img src="images/twiter_icon.png" width="24" height="24" alt="img" /></a></li>
+            <li><a href="#"><img src="images/google_icon.png" width="26" height="26" alt="img" /></a></li>
+          </ul>
+          <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
+      <!-- footer ends --> 
+    </div>
+
+  <!-- container ends --> 
+   </div>
+</div>
+
+<!-- wrapper ends -->
+
+</h:body>
+       
+</html>
+
+
